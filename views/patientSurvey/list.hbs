@@ -1,0 +1,38 @@
+<h3><a class="btn btn-secondary" href="/patientSurvey"><i class="fa fa-plus"></i> Create New</a> Insomnia Severity Index List</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th> Total Score</th>
+            <th> Submitted By </th>
+            <th> Submitted Date </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this.fullName}}</td>
+            <td> {{sum this.difficultyFallingAsleep this.difficultyStayingAsleep this.problemsWakingUpTooEarly this.currentSleepPattern this.noticeableToOthers this.worriedCurrentSleepProblem this.sleepProblemToInterface }}
+            </td>
+            <td>{{this.fullName}}</td>
+            <td> {{moment this.createdDate format="MMM-DD-YYYY"}} </td>
+
+            <td>
+                <a href="/patientSurvey/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                <a href="/patientSurvey/delete/{{this._id}}"
+                    onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-lg"
+                        aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<h2>
+    Guidelines for Scoring/Interpretation: </h2>
+<h4> Please see the above scores for below categories which you may belongs to: </h4>
+<p>0 – 7 = No clinically significant insomnia</p>
+<p> 8 – 14 = Subthreshold insomnia</p>
+<p> 15 – 21 = Clinical insomnia (moderate severity)</p>
+<p>22 – 28 = Clinical insomnia (severe)</p>
